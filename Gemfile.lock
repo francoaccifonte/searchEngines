@@ -210,6 +210,8 @@ GEM
     rubocop-rspec (2.8.0)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
+    strong_migrations (0.8.0)
+      activerecord (>= 5.2)
     strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
@@ -237,6 +239,7 @@ DEPENDENCIES
   rspec-rails (~> 5.0.0)
   rubocop-rails
   rubocop-rspec
+  strong_migrations
   tzinfo-data
 
 RUBY VERSION
