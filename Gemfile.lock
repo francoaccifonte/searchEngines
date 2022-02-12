@@ -207,6 +207,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
+    rubocop-rspec (2.8.0)
+      rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     strscan (3.0.1)
     thor (1.2.1)
@@ -234,6 +236,7 @@ DEPENDENCIES
   rails (~> 7.0.2, >= 7.0.2.2)
   rspec-rails (~> 5.0.0)
   rubocop-rails
+  rubocop-rspec
   tzinfo-data
 
 RUBY VERSION
