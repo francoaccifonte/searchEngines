@@ -22,5 +22,8 @@
 #
 FactoryBot.define do
   factory :result do
+    description { Faker::Lorem.sentence }
+    title { Faker::Lorem.sentence }
+    url { Faker::Internet.url }
   end
 end

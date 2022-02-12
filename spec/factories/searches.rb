@@ -13,5 +13,15 @@
 #
 FactoryBot.define do
   factory :search do
+    engine { %w[google bing].sample }
+    query_terms { Array.new(rand(1..10)) { Faker::Lorem.word } }
+
+    trait :google do
+      engine { 'google' }
+    end
+
+    trait :bing do
+      engine { 'bing' }
+    end
   end
 end

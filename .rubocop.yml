@@ -6,3 +6,9 @@ Style/Documentation:
 
 AllCops:
   NewCops: enable
+  Exclude:
+    - db/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
