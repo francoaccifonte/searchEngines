@@ -3,10 +3,12 @@
 class SearchesController < ApplicationController
   # GET /search?text=query_terms&engine[]=google&engine[]=bing
   def index
-    requested_engines.map do |engine|
+    results = requested_engines.map do |engine|
       engine_class = "Engine::#{engine.classify}".constantize
       engine_class.new(search_params.fetch(:text)).find_search_results
     end.flatten
+
+    render json: { results: }
   end
 
   private
@@ -17,7 +19,9 @@ class SearchesController < ApplicationController
 
   def requested_engines
     search_params.fetch(:engine).reduce([]) do |engines, engine|
-      engines + [engine] if ENGINE::SUPPORTED_ENGINES.include?(engine)
+      raise Errors::UnsupportedEngineError, "Unsupported engine: #{engine}" unless Engine::SUPPORTED_ENGINES.include?(engine)
+
+      engines + [engine]
     end.uniq
   end
 end

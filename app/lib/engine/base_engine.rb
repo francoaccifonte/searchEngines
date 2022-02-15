@@ -35,6 +35,8 @@ module Engine
 
     def parse_results(response)
       # if the response from the search engine needs to be processed, implement this method
+      # return valuew should be an array of hashes like the following:
+      # [{ title: 'title', url: 'link', description: 'description' }]
       response
     end
   end
