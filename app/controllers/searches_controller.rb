@@ -19,7 +19,10 @@ class SearchesController < ApplicationController
 
   def requested_engines
     search_params.fetch(:engine).reduce([]) do |engines, engine|
-      raise Errors::UnsupportedEngineError, "Unsupported engine: #{engine}" unless Engine::SUPPORTED_ENGINES.include?(engine)
+      unless Engine::SUPPORTED_ENGINES.include?(engine)
+        raise Errors::UnsupportedEngineError,
+              "Unsupported engine: #{engine}"
+      end
 
       engines + [engine]
     end.uniq
