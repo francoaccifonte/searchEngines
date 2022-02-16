@@ -26,6 +26,6 @@ class SearchesController < ApplicationController
   end
 
   def supported?(engine)
-    Engine::SUPPORTED_ENGINES.include?(engine)
+    Engine::SupportedEngines::NAMES.include?(engine)
   end
 end

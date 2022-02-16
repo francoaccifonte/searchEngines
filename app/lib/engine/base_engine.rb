@@ -7,8 +7,6 @@ module Engine
   # - parse_results // optional
   # - parse_query // optional
 
-  SUPPORTED_ENGINES = %w[google bing].freeze
-
   class BaseEngine
     include HttpRequests
 
@@ -20,7 +18,7 @@ module Engine
     end
 
     def find_search_results
-      @search_results = parse_results(get(base_url, query: parsed_query))
+      @search_results = parse_results(get(base_url, query_params: parsed_query))
     end
 
     private
@@ -37,7 +35,17 @@ module Engine
       # if the response from the search engine needs to be processed, implement this method
       # return valuew should be an array of hashes like the following:
       # [{ title: 'title', url: 'link', description: 'description' }]
-      response
+      response.force_encoding('ISO-8859-1').encode('UTF-8')
+    end
+
+    def handle_error(response)
+      return if response.success?
+
+      raise StandardError, "Error: #{response.code} #{response.body}"
+    end
+
+    def http_options(**params)
+      super(**params).merge(followlocation: true)
     end
   end
 end

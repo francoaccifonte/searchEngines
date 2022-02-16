@@ -29,10 +29,7 @@ module HttpRequests
 
     request = Typhoeus::Request.new(
       url,
-      method:,
-      body:,
-      params: query_params,
-      headers: default_headers.merge(headers.deep_stringify_keys)
+      **http_options(method:, body:, query_params:, headers:)
     )
 
     response = request.run
@@ -60,5 +57,12 @@ module HttpRequests
 
   def authorization_header
     nil
+  end
+
+  def http_options(method:, body:, query_params:, headers:)
+    { method:,
+      body:,
+      params: query_params,
+      headers: default_headers.merge(headers.deep_stringify_keys) }
   end
 end
